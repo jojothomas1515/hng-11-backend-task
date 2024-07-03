@@ -27,8 +27,8 @@ def get_location(ip):
 def get_temperature(location):
     LOCATION_WEATHER_RESOLVER = f"http://api.weatherapi.com/v1/current.json?key={WEATHER_API_KEY}&q={location}&aqi=no"
     data = get(LOCATION_WEATHER_RESOLVER).json()
-    print(data)
-    return "11"
+    
+    return data.get('current').get('temp_c') if data.get('current') else "N/A"
 
 
 class HelloView(APIView):
